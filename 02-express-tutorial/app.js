@@ -1,10 +1,20 @@
-const http = require('http')
+const express = require('express');
+const app = express();
 
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'content-type': 'text/html' })
-    res.write('<h1>home page</h1>')
-    res.end()
-});
+const people = require('./routes/people')
+const auth = require('./routes/auth')
+
+// static assets
+app.use(express.static('./methods-public'))
+//parse form data
+app.use(express.urlencoded({ extended: false }))
+// parse json
+app.use(express.json())
+
+app.use('/api/people', people)
+app.use('/login', auth)
 
 
-server.listen(5000);
+app.listen(5000, () => {
+    console.log('server is listening on port 5000...');
+})
