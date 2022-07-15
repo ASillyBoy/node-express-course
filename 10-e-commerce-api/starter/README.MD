@@ -63,7 +63,7 @@
 - [] ignore 'role'
 - [] alternative 'admin' setup
 
-#### Handle Password
+#### Handle Password(hash password)
 
 - [] UserSchema.pre('save') - hook
 - this points to User
